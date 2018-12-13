@@ -1,17 +1,9 @@
-#include "robot-config.h"
-          
-int reset()
-{
-    Brain.Screen.print(Motor.rotation(rotationUnits::deg));
-    LeftMotor.rotateTo(0,rotationUnits::deg,100,velocityUnits::pct);
-    RightMotor.rotateTo(30,rotationUnits::deg,100,velocityUnits::pct);
-}
 
-int leftAutonomous() 
+int main() 
 {
     //Drive up to platforms
-    LeftMotor.rotateTo(30,rotationUnits::deg,100,velocityUnits::pct);
-    RightMotor.rotateTo(-30,rotationUnits::deg,100,velocityUnits::pct);
+    LeftMotor.rotateFor(30,rotationUnits::deg,100,velocityUnits::pct);
+    RightMotor.rotateFor(-30,rotationUnits::deg,100,velocityUnits::pct);
     LeftMotor.rotateFor(30,rotationUnits::rev,75,velocityUnits::pct);
     RightMotor.rotateFor(30,rotationUnits::rev,75,velocityUnits::pct);
 
