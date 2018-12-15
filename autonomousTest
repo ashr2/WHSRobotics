@@ -1,8 +1,3 @@
-#include "robot-config.h"
-          
-
-int main()
-{
     //Turn right 90 degreees
     Brain.Screen.clearScreen();
     Brain.Screen.print("Turning right");
@@ -15,10 +10,10 @@ int main()
     //Drive forward until approaches wall
     LeftMotor.spin(directionType::fwd,50,velocityUnits::pct);
     RightMotor.spin(directionType::fwd,50,velocityUnits::pct);
-    while(FrontSonar.distance(distanceUnits::in) > 9)
+    while(Sonar.distance(distanceUnits::in) > 9)
     {
         Brain.Screen.clearScreen();
-        Brain.Screen.print(FrontSonar.distance(distanceUnits::in));
+        Brain.Screen.print(Sonar.distance(distanceUnits::in));
     }
     LeftMotor.stop();
     RightMotor.stop();
@@ -26,10 +21,10 @@ int main()
     //Drive backwards to center
     LeftMotor.spin(directionType::rev,50,velocityUnits::pct);
     RightMotor.spin(directionType::rev,50, velocityUnits::pct);
-    while(RearSonar.distance(distanceUnits::in) > 36)
+    while(Sonar.distance(distanceUnits::in) > 36)
     { 
         Brain.Screen.clearScreen();
-        Brain.Screen.print(RearSonar.distance(distanceUnits::in));
+        Brain.Screen.print(Sonar.distance(distanceUnits::in));
     }
     //Turn left 90 degrees
     Brain.Screen.clearScreen();
@@ -51,4 +46,3 @@ int main()
     task::sleep(5000);
     LeftMotor.stop();
     RightMotor.stop();
-}
