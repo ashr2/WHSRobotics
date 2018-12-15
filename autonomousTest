@@ -1,10 +1,54 @@
+#include "robot-config.h"
+          
 
-int main() 
+int main()
 {
-    //Drive up to platforms
-    LeftMotor.rotateFor(30,rotationUnits::deg,100,velocityUnits::pct);
-    RightMotor.rotateFor(-30,rotationUnits::deg,100,velocityUnits::pct);
-    LeftMotor.rotateFor(30,rotationUnits::rev,75,velocityUnits::pct);
-    RightMotor.rotateFor(30,rotationUnits::rev,75,velocityUnits::pct);
-
+    //Turn right 90 degreees
+    Brain.Screen.clearScreen();
+    Brain.Screen.print("Turning right");
+    LeftMotor.setRotation(0,rotationUnits::deg);
+    RightMotor.setRotation(0,rotationUnits::deg);
+    LeftMotor.rotateTo(90,rotationUnits::deg,50,velocityUnits::pct);
+    RightMotor.rotateTo(-90,rotationUnits::deg,-50,velocityUnits::pct);
+    LeftMotor.stop();
+    RightMotor.stop();
+    //Drive forward until approaches wall
+    LeftMotor.spin(directionType::fwd,50,velocityUnits::pct);
+    RightMotor.spin(directionType::fwd,50,velocityUnits::pct);
+    while(FrontSonar.distance(distanceUnits::in) > 9)
+    {
+        Brain.Screen.clearScreen();
+        Brain.Screen.print(FrontSonar.distance(distanceUnits::in));
+    }
+    LeftMotor.stop();
+    RightMotor.stop();
+    //Activate arm code
+    //Drive backwards to center
+    LeftMotor.spin(directionType::rev,50,velocityUnits::pct);
+    RightMotor.spin(directionType::rev,50, velocityUnits::pct);
+    while(RearSonar.distance(distanceUnits::in) > 36)
+    { 
+        Brain.Screen.clearScreen();
+        Brain.Screen.print(RearSonar.distance(distanceUnits::in));
+    }
+    //Turn left 90 degrees
+    Brain.Screen.clearScreen();
+    Brain.Screen.print("Turning left");
+    LeftMotor.setRotation(0,rotationUnits::deg);
+    RightMotor.setRotation(0,rotationUnits::deg);
+    LeftMotor.rotateTo(-90,rotationUnits::deg,-50,velocityUnits::pct);
+    RightMotor.rotateTo(90,rotationUnits::deg,50,velocityUnits::pct);
+    //Drive forward
+    LeftMotor.setRotation(0,rotationUnits::rev);
+    RightMotor.setRotation(0,rotationUnits::rev);
+    LeftMotor.rotateFor(2,rotationUnits::rev,50,velocityUnits::pct);
+    RightMotor.rotateFor(2,rotationUnits::rev,50,velocityUnits::pct);
+    LeftMotor.setMaxTorque(80,percentUnits::pct);
+    RightMotor.setMaxTorque(80,percentUnits::pct);
+    //Drive onto platform
+    LeftMotor.spin(directionType::fwd,80,velocityUnits::pct);
+    RightMotor.spin(directionType::fwd,80,velocityUnits::pct);
+    task::sleep(5000);
+    LeftMotor.stop();
+    RightMotor.stop();
 }
