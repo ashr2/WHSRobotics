@@ -1,8 +1,6 @@
-    //Turn right 90 degreees
+      //Turn right 90 degreees
     Brain.Screen.clearScreen();
     Brain.Screen.print("Turning right");
-    LeftMotor.setRotation(0,rotationUnits::deg);
-    RightMotor.setRotation(0,rotationUnits::deg);
     LeftMotor.rotateTo(90,rotationUnits::deg,50,velocityUnits::pct);
     RightMotor.rotateTo(-90,rotationUnits::deg,-50,velocityUnits::pct);
     LeftMotor.stop();
@@ -21,7 +19,7 @@
     //Drive backwards to center
     LeftMotor.spin(directionType::rev,50,velocityUnits::pct);
     RightMotor.spin(directionType::rev,50, velocityUnits::pct);
-    while(Sonar.distance(distanceUnits::in) > 36)
+    while(Sonar.distance(distanceUnits::in) < 36)
     { 
         Brain.Screen.clearScreen();
         Brain.Screen.print(Sonar.distance(distanceUnits::in));
@@ -46,3 +44,4 @@
     task::sleep(5000);
     LeftMotor.stop();
     RightMotor.stop();
+}
