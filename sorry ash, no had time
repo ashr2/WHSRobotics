@@ -1,0 +1,188 @@
+#include "robot-config.h"
+//ya boi is the creater of communism in the club          
+//Ash is #118
+//PORT NUMBER 13 IS CURSED. DON'T TOUCH IT AT ALL.
+FIX THE BACK LEFT WHEEL, EITHER CHANGE AXIS OR MOTOR
+int yeet=1;
+int hi = false;
+int main() {
+    /*
+    
+     //Set the velocity of the left and right motor to 50% power. This command will not make the motor spin.
+        Minh.setVelocity(10, vex::velocityUnits::pct);
+        Xiaoping.setVelocity(10, vex::velocityUnits::pct);
+    
+	    //Spin the right and left motor in the forward direction. The motors will spin at 50% power because of the previous commands.
+        Minh.spin(vex::directionType::fwd);
+        Xiaoping.spin(vex::directionType::fwd);
+    
+	    //Wait 3 second or 3000 milliseconds.
+        vex::task::sleep(3000);
+    
+	    //Stop both motors.
+        Minh.stop();
+        Xiaoping.stop(); 
+        }
+        */
+    
+        //AUTONOUMOUS
+        /*
+        Brain.Screen.print("Autonomous Blue Front");
+        //Set the velocity of the left and right motor to 50% power. This command will not make the motor spin.
+    LeftMotor.setVelocity(75, vex::velocityUnits::pct);
+    RightMotor.setVelocity(75, vex::velocityUnits::pct);
+    
+	//Spin the right and left motor in the forward direction. The motors will spin at 50% power because of the previous commands.
+
+    RightMotor.rotateTo(1800,rotationUnits::deg,false);
+    LeftMotor.rotateTo(1800,rotationUnits::deg);
+    RightMotor.rotateTo(90,rotationUnits::deg,false);
+    LeftMotor.rotateTo(-90,rotationUnits::deg);
+    RightMotor.rotateTo(360,rotationUnits::deg,false);
+    LeftMotor.rotateTo(360,rotationUnits::deg);
+    RightMotor.rotateTo(-90,rotationUnits::deg,false);
+    LeftMotor.rotateTo(90,rotationUnits::deg);
+    RightMotor.rotateTo(1800,rotationUnits::deg,false);
+    LeftMotor.rotateTo(1800,rotationUnits::deg);
+    */
+    
+    
+    while (true){
+        Brain.Screen.print("Hammer + Sickle");
+        Brain.Screen.printAt(1,40,"Communism WILL rise again");
+    
+        //Motors
+        
+        //Left side wheelz: //11
+            //front
+            Minh.spin(directionType::fwd,Controller1.Axis3.position(percentUnits::pct),velocityUnits::pct);     
+                                                                                //port 11
+            //back
+            Mao.spin(directionType::fwd,Controller1.Axis3.position(percentUnits::pct),velocityUnits::pct);      
+                                                                                //port 15
+        
+        //Right side wheelz: //1
+            //front
+            Xiaoping.spin(directionType::rev,Controller1.Axis2.position(percentUnits::pct),velocityUnits::pct); 
+                                                                                //port 1
+            //back
+            Lenin.spin(directionType::rev,Controller1.Axis2.position(percentUnits::pct),velocityUnits::pct);    
+                                                                                //port 3
+        
+        
+        //One lift boi:
+        
+        //Raising arm of a farmer and a worker, one holding a sickle, and the other holding a restraining order
+        if(Controller1.ButtonR1.pressing()){
+            Stalin.spin(directionType::fwd, 100, velocityUnits::pct);           //port 8
+            HammerSickle.spin(directionType::rev, 100, velocityUnits::pct);     //port 18
+        }
+        //Else lower the same arms, expect now the worker has money (except not cause it's communism so now hes just sad)
+        else if(Controller1.ButtonR2.pressing()){
+            Stalin.spin(directionType::rev, 100, velocityUnits::pct);
+            HammerSickle.spin(directionType::fwd, 100, velocityUnits::pct);
+        }
+        //Else both arms don't do anything because they're tired and lazy
+        else{
+            Stalin.stop(brakeType::hold);
+            HammerSickle.stop(brakeType::hold);  
+        }
+        
+        
+        
+        
+        
+        
+        
+        //etc i guess but prob ball launch thing maybe idk
+        //ok it has been decided that this will be a lever thing
+        
+        if(Controller1.ButtonL1.pressing()){
+            Castro.spin(directionType::fwd, 100, velocityUnits::pct);           //port 2
+            Gorbachev.spin(directionType::rev, 100, velocityUnits::pct);        //port 12
+        }
+        //Else lower the same arms, expect now the worker has money (except not cause it's communism so now hes just sad)
+        else if(Controller1.ButtonL2.pressing()){
+            Castro.spin(directionType::rev, 100, velocityUnits::pct);
+            Gorbachev.spin(directionType::fwd, 100, velocityUnits::pct);
+        }
+        //Else both arms don't do anything because they're tired and lazy
+        else{
+            Castro.stop(brakeType::hold);
+            Gorbachev.stop(brakeType::hold);
+        }
+        
+        // and this is the ball launcher and bada boom, we win
+        
+        if(Controller1.ButtonX.pressing()){
+            Marx.spin(directionType::fwd, 100, velocityUnits::pct);           //port 4
+        }
+        //Else both arms don't do anything because they're tired and lazy
+        else{
+            Marx.stop(brakeType::hold);
+        }
+        
+        //Ash's Masta Piece
+        /*
+Brain.Screen.pressed(pressedFunction);        int threshold = 25;
+        int controllerY = Controller1.Axis3.position(percentUnits::pct);
+        int controllerX = Controller1.Axis4.position(percentUnits::pct);
+        while(abs(controllerX)<threshold && abs(controllerY) > threshold)
+        {
+            Xiaoping.spin(directionType::fwd,controllerY,velocityUnits::pct);
+            Minh.spin(directionType::fwd,controllerY,velocityUnits::pct);
+        }
+        while(abs(controllerX)>threshold && abs(controllerY) < threshold)
+        {
+            Xiaoping.spin(directionType::fwd,controllerX,velocityUnits::pct);
+            Minh.spin(directionType::fwd,-controllerX,velocityUnits::pct);
+        }
+        Xiaoping.spin(directionType::fwd,0,velocityUnits::pct);
+        Minh.spin(directionType::fwd,0,velocityUnits::pct);
+        */
+            
+        
+    }
+}
+//it is not cuul to juul in schuul, you fucking tuul; now we must duul in the puul, and you better not druul, because you will be seen as a fuul, since we are all very cruul, and we own a pet muul, and his is all against the ruuls,and you will not be allowed to carpuul, and we will stel your step-stuul, and we'll kidnap you and send you to instanbuul, where you will mot be given enough protein molecuuls, and you can only drink fuul, so don't juul in schuul.
+//it's hard to describe what grape flavor food tastes like, but purple food always tastes like grape - Jack Orr
+
+ /*
+        if(Controller1.ButtonX.pressing()){
+        //Left side wheelz: //11
+            Minh.spin(directionType::rev,Controller1.Axis3.position(percentUnits::pct),velocityUnits::pct);
+        
+        //Right side wheelz: //1
+            Xiaoping.spin(directionType::rev,Controller1.Axis2.position(percentUnits::pct),velocityUnits::pct);
+        }
+        //Reverse, reverse (Controller.ButtonY.pressed(pressedFunction);)
+        else if(Controller1.ButtonY.pressing()){
+        //Left side wheelz: //11
+            Minh.spin(directionType::fwd,Controller1.Axis3.position(percentUnits::pct),velocityUnits::pct);
+        
+        //Right side wheelz: //1
+            Xiaoping.spin(directionType::fwd,Controller1.Axis2.position(percentUnits::pct),velocityUnits::pct);
+        }
+        else{
+        //Left side wheelz: //11
+            Minh.spin(directionType::rev,Controller1.Axis3.position(percentUnits::pct),velocityUnits::pct);
+        
+        //Right side wheelz: //1
+            Xiaoping.spin(directionType::rev,Controller1.Axis2.position(percentUnits::pct),velocityUnits::pct);
+        }
+        
+        
+        //Claw Control
+        if(Controller1.ButtonA.pressing()) { //If the A button is pressed...
+            //...Spin the claw motor forward.
+            ClawMotor.spin(vex::directionType::fwd, clawSpeedPCT, vex::velocityUnits::pct);
+        }
+        else if(Controller1.ButtonY.pressing()) { //If the Y button is pressed...
+            //...Spin the claw motor backward.
+            ClawMotor.spin(vex::directionType::rev, clawSpeedPCT, vex::velocityUnits::pct);
+        }
+        else { //If the A or Y button are not pressed...        
+            //...Stop the claw motor.
+            ClawMotor.stop(vex::brakeType::brake);        
+        }
+        */
