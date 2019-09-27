@@ -1,0 +1,6 @@
+vex::brain Brain;
+vex::motor LeftPlatform = vex::motor(vex::PORT1);
+vex::motor RightPlatform = vex::motor(vex::PORT2);
+vex::controller Controller = vex::controller();
+vex::motor LeftDrive = vex::motor(vex::PORT3);
+vex::motor RightDrive = vex::motor(Vex::PORT4);
