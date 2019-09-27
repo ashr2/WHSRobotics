@@ -1,0 +1,34 @@
+#include "robot-config.h"
+void initialize()
+{
+    LeftPlatform.spin(vex::directionType::rev,60,vex::velocityUnits::pct);
+    RightPlatform.spin(vex::directionType::rev,60,vex::velocityUnits::pct);
+    vex::task::sleep(3000);
+}
+void elevatorRemoteControl()
+{
+    if(Controller.ButtonUp.pressing())
+    {
+        LeftPlatform.spin(vex::directionType::fwd,60,vex::velocityUnits::pct);
+        RightPlatform.spin(vex::directionType::fwd,60,vex::velocityUnits::pct);
+    }
+    if(Controller.ButtonDown.pressing())
+    {
+        LeftPlatform.spin(vex::directionType::rev,60,vex::velocityUnits::pct);
+        RightPlatform.spin(vex::directionType::rev,60,vex::velocityUnits::pct);
+    }
+}
+void driveRemoteControl()
+{
+    LeftDrive.spin(vex::directionType::fwd,Controller.Axis3.position(vex::percentUnits::pct),vex::velocityUnits::pct);
+    RightDrive.spin(vex::directionType::fwd,Controller.Axis2.position(vex::percentUnits::pct),vex::velocityUnits::pct);
+}
+int main() 
+{
+    initialize();
+    while(true)
+    {
+        driveRemoteControl();
+        elevatorRemoteControl();
+    }
+}
